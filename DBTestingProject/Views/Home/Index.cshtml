@@ -1,8 +1,35 @@
-﻿@{
+﻿@model IEnumerable<DBTestingProject.Models.Furniture>
+@{
     ViewData["Title"] = "Home Page";
 }
 <h1>Hello My Freands</h1>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr style="color:darkred">
+                <th>ID</th>
+                <th>Type_Furniture</th>
+                <th>Outside to view</th>
+                <th>Material with product</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var info_table in Model)
+            {
+                <tr>
+                    <td style="color:orangered; font-weight:bold">@info_table.Id</td>
+                    <td>@info_table.TypeFurniture</td>
+                    <td>@info_table.OutsideView</td>
+                    <td>@info_table.Material</td>
+                    <td>@info_table.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

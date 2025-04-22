@@ -7,15 +7,17 @@ namespace DBTestingProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        FurnitureDBContext DBContext;
+        public HomeController(ILogger<HomeController> logger, FurnitureDBContext furnitureDBContext)
         {
             _logger = logger;
+            DBContext = furnitureDBContext;
         }
-
+        
         public IActionResult Index()
         {
-            return View();
+            var furniture = DBContext.Furnitures.ToList();
+            return View(furniture);
         }
 
         public IActionResult Privacy()
