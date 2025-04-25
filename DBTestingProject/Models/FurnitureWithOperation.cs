@@ -1,6 +1,6 @@
 ﻿namespace DBTestingProject.Models
 {
-    public class FurnitureWithOperation
+    public class FurnitureWithOperation:IFurnitureOperations
     {
         public IEnumerable<Furniture> GetFurniture(FurnitureDBContext dBContext)
         {
@@ -18,6 +18,13 @@
 
             });
             furnitureDB.SaveChanges();
+        }
+        public void Remove(int id, FurnitureDBContext furnitureDBContext)
+        {
+            var it = furnitureDBContext.Furnitures.Find(id);
+            furnitureDBContext.Furnitures.Remove(it);
+            furnitureDBContext.SaveChanges();
+            
         }
     }
 }

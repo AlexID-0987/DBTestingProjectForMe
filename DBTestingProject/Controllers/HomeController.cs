@@ -20,7 +20,19 @@ namespace DBTestingProject.Controllers
             //var furniture = await Task.Run(()=> DBContext.Furnitures.ToList());
             List<Furniture> myList = await Task.Run(() =>FurnitureWithOperation.GetFurniture(DBContext).ToList());
             //FurnitureWithOperation.AddFurniture(DBContext);
+            
             return  View(myList);
+            
+        }
+
+       
+
+        
+        public IActionResult Delete(int id)
+        {
+           
+            FurnitureWithOperation.Remove(id, DBContext);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
