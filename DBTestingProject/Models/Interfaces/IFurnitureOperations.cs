@@ -1,7 +1,8 @@
-﻿namespace DBTestingProject.Models
+﻿namespace DBTestingProject.Models.Interfaces
 {
     public interface IFurnitureOperations
     {
+
         void Remove(int id, FurnitureDBContext furnitureDBContext) { }
     }
 }

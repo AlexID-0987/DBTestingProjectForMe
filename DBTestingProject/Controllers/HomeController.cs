@@ -1,5 +1,7 @@
 using DBTestingProject.Models;
+using DBTestingProject.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DBTestingProject.Controllers
@@ -8,13 +10,14 @@ namespace DBTestingProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         FurnitureDBContext DBContext;
+        
         FurnitureWithOperation FurnitureWithOperation = new FurnitureWithOperation();
         public HomeController(ILogger<HomeController> logger, FurnitureDBContext furnitureDBContext)
         {
             _logger = logger;
             DBContext = furnitureDBContext;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             //var furniture = await Task.Run(()=> DBContext.Furnitures.ToList());
@@ -26,7 +29,7 @@ namespace DBTestingProject.Controllers
         }
 
        
-
+        
         
         public IActionResult Delete(int id)
         {
