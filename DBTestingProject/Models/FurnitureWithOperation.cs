@@ -5,36 +5,31 @@ namespace DBTestingProject.Models
     public class FurnitureWithOperation:IFurnitureOperations
     {
         IDeleteFurniture DeleteFurniture;
-        
+        IAddFurniture AddFurnitureTo;
+        IGetItemFurniture GetGetItemFurniture;
         public FurnitureWithOperation ()
         {
             IDeleteFurniture deleteFurniture = new DeleteFurniture ();
+            IAddFurniture addFurniture = new AddToListFurniture();
+            IGetItemFurniture getItemFurniture = new GetFurnitureMyList();
             DeleteFurniture= deleteFurniture;
+            AddFurnitureTo= addFurniture;
+            GetGetItemFurniture= getItemFurniture;
         }
 
         public IEnumerable<Furniture> GetFurniture(FurnitureDBContext dBContext)
         {
-           List <Furniture> it = dBContext.Furnitures.ToList();
-            return it;
+           
+            return GetGetItemFurniture.GetMyFurniture(dBContext);
         }
         public void AddFurniture(FurnitureDBContext furnitureDB)
         {
-            furnitureDB.Add(new Furniture
-            {
-                TypeFurniture="Sofa",
-                OutsideView="Soft",
-                Material="Skin",
-                Price=456.89
-
-            });
-            furnitureDB.SaveChanges();
+            AddFurnitureTo.AddFurnitureToList(furnitureDB);
         }
         public void Remove(int id, FurnitureDBContext furnitureDBContext)
         {
             DeleteFurniture.WithDeleteFurniture(id, furnitureDBContext);
-            //var it = furnitureDBContext.Furnitures.Find(id);
-           // furnitureDBContext.Furnitures.Remove(it);
-            //furnitureDBContext.SaveChanges();
+            
             
         }
     }

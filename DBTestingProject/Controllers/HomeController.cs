@@ -28,7 +28,10 @@ namespace DBTestingProject.Controllers
             
         }
 
-       
+        public async Task<IActionResult> AddToFurnitureMyList()
+        {
+            return View();
+        }
         
         
         public IActionResult Delete(int id)
