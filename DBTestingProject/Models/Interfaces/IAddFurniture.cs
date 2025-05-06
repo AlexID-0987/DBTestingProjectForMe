@@ -2,6 +2,6 @@
 {
     public interface IAddFurniture
     {
-        void AddFurnitureToList(FurnitureDBContext context);
+        void AddFurnitureToList(FurnitureDBContext context, Furniture furniture);
     }
 }

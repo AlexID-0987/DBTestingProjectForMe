@@ -4,10 +4,10 @@ namespace DBTestingProject.Models
 {
     public class AddToListFurniture : IAddFurniture
     {
-        Furniture Furniture = new Furniture() { Material = "Oat", OutsideView = "Tree", TypeFurniture = "Bad", Price = 346.098 };
-        public void AddFurnitureToList(FurnitureDBContext context)
+        
+        public void AddFurnitureToList(FurnitureDBContext context, Furniture furniture)
         {
-            context.Add(Furniture);
+            context.Add(furniture);
             context.SaveChanges();
         }
     }

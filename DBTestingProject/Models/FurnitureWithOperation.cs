@@ -22,9 +22,9 @@ namespace DBTestingProject.Models
            
             return GetGetItemFurniture.GetMyFurniture(dBContext);
         }
-        public void AddFurniture(FurnitureDBContext furnitureDB)
+        public void AddFurniture(FurnitureDBContext furnitureDB, Furniture furniture)
         {
-            AddFurnitureTo.AddFurnitureToList(furnitureDB);
+            AddFurnitureTo.AddFurnitureToList(furnitureDB, furniture);
         }
         public void Remove(int id, FurnitureDBContext furnitureDBContext)
         {

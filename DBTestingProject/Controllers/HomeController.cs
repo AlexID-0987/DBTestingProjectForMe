@@ -28,12 +28,18 @@ namespace DBTestingProject.Controllers
             
         }
 
-        public async Task<IActionResult> AddToFurnitureMyList()
+        [HttpPost]
+        public IActionResult AddToFurnitureMyList(Furniture furniture)
         {
-            return View();
+            FurnitureWithOperation.AddFurniture(DBContext, furniture);
+            return RedirectToAction("Index");
         }
-        
-        
+        public IActionResult AddToFurnitureMyList()
+        {
+            
+            return View("AddToFurnitureMyList");
+        }
+
         public IActionResult Delete(int id)
         {
            

@@ -7,6 +7,9 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div>
+    <a asp-action="AddToFurnitureMyList">Create</a>
+</div>
 
 <div>
     <table class="table">
@@ -30,7 +33,7 @@
                     <td>@info_table.Material</td>
                     <td>@info_table.Price</td>
                     <td>
-                        | @Html.ActionLink("Add", "AddToFurnitureMyList")
+                        | @Html.ActionLink("Edit", "Edit")
                         | @Html.ActionLink("Delete","Delete", new {Id=info_table.Id})
                     </td>
                 </tr>
