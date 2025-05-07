@@ -1,0 +1,38 @@
+﻿@model DBTestingProject.Models.Furniture
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div>
+    <h1 style="text-align:center">Edit</h1>
+</div>
+
+<div class="container">
+    <form asp-action="Edit">
+        <div class="form-group mb-4">
+            <label asp-for="Id" class="form-control"></label>
+            <input asp-for="Id" class="form-control" readonly />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="TypeFurniture" class="form-control"></label>
+            <input asp-for="TypeFurniture" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="OutsideView" class="form-control"></label>
+            <input asp-for="OutsideView" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="Material" class="form-control"></label>
+            <input asp-for="Material" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="Price" class="form-control"></label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <input type="submit" value="Edit" class="btn btn-primary form-control" />
+        </div>
+    </form>
+    <div class="container mb-4">
+        <a asp-action="Index" class="form-control btn btn-danger">Home</a>
+    </div>
+</div>

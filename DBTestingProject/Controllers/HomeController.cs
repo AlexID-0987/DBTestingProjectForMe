@@ -22,16 +22,16 @@ namespace DBTestingProject.Controllers
         {
             //var furniture = await Task.Run(()=> DBContext.Furnitures.ToList());
             List<Furniture> myList = await Task.Run(() =>FurnitureWithOperation.GetFurniture(DBContext).ToList());
-            //FurnitureWithOperation.AddFurniture(DBContext);
+            
             
             return  View(myList);
             
         }
 
         [HttpPost]
-        public IActionResult AddToFurnitureMyList(Furniture furniture)
+        public async Task<IActionResult> AddToFurnitureMyList(Furniture furniture)
         {
-            FurnitureWithOperation.AddFurniture(DBContext, furniture);
+            await Task.Run(()=> FurnitureWithOperation.AddFurniture(DBContext, furniture));
             return RedirectToAction("Index");
         }
         public IActionResult AddToFurnitureMyList()
@@ -39,11 +39,24 @@ namespace DBTestingProject.Controllers
             
             return View("AddToFurnitureMyList");
         }
-
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            
+           var furniture = await Task.Run(()=> FurnitureWithOperation.GetFurniture(DBContext).FirstOrDefault(furniture=>furniture.Id==id));
+            return View(furniture);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Furniture furnitureNew)
+        {
+            
+            await Task.Run(() => FurnitureWithOperation.EditToList(furnitureNew, DBContext));
+            return RedirectToAction("Index");
+        }
+        public async  Task<IActionResult> Delete(int id)
         {
            
-            FurnitureWithOperation.Remove(id, DBContext);
+            await Task.Run(() => FurnitureWithOperation.Remove(id, DBContext));
             return RedirectToAction("Index");
         }
 
