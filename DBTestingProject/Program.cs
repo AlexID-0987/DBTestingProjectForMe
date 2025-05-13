@@ -1,4 +1,5 @@
 using DBTestingProject.Models;
+using DBTestingProject.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FurnitureDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnections")));
 
+builder.Services.AddScoped<IFurnitureOperations, FurnitureWithOperation>();
+builder.Services.AddSingleton<IDateTime, MyTime>();
 
 var app = builder.Build();
 

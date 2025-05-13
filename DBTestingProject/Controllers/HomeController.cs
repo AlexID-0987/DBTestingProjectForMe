@@ -10,19 +10,27 @@ namespace DBTestingProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         FurnitureDBContext DBContext;
-        
-        FurnitureWithOperation FurnitureWithOperation = new FurnitureWithOperation();
-        public HomeController(ILogger<HomeController> logger, FurnitureDBContext furnitureDBContext)
+
+        private readonly IDateTime  time;
+
+        FurnitureWithOperation FurnitureWithOperation=new FurnitureWithOperation();
+        public HomeController(ILogger<HomeController> logger, FurnitureDBContext furnitureDBContext, IDateTime dateTime)
         {
             _logger = logger;
             DBContext = furnitureDBContext;
+            time = dateTime;
         }
-        
+        public string MyMessage(DateTime dateTime)
+        {
+            if (dateTime.Hour < 12) { return "Good Moring!"; }
+            else if(dateTime.Hour<17) { return "Good Afternoon!"; }
+            return "Good Evening!";
+        }
         public async Task<IActionResult> Index()
         {
             //var furniture = await Task.Run(()=> DBContext.Furnitures.ToList());
             List<Furniture> myList = await Task.Run(() =>FurnitureWithOperation.GetFurniture(DBContext).ToList());
-            
+            ViewBag.str = MyMessage(time.Now);
             
             return  View(myList);
             
@@ -32,7 +40,7 @@ namespace DBTestingProject.Controllers
         public async Task<IActionResult> AddToFurnitureMyList(Furniture furniture)
         {
             await Task.Run(()=> FurnitureWithOperation.AddFurniture(DBContext, furniture));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); 
         }
         public IActionResult AddToFurnitureMyList()
         {
