@@ -1,3 +1,4 @@
+using Castle.Components.DictionaryAdapter.Xml;
 using DBTestingProject.Controllers;
 using DBTestingProject.Models;
 using DBTestingProject.Models.Interfaces;
@@ -17,7 +18,15 @@ namespace DbTestingProject.Tests
         GetFurnitureMyList getFurniture=new GetFurnitureMyList();
         IDeleteFurniture deleteFurniture= new DeleteFurniture();
         IEditFurniture editFurniture = new EditMyListFurniture();
-
+        
+        private static DbContextOptions<FurnitureDBContext> options;
+        [SetUp]
+        public void Setup()
+        {
+            options = new DbContextOptionsBuilder<FurnitureDBContext>()
+                .UseInMemoryDatabase(databaseName: "TestDb")
+                .Options;
+        }
         [Test]
         public void AddToFurnitureMyList_Test() 
         {
@@ -36,19 +45,16 @@ namespace DbTestingProject.Tests
         [Test]
         public void TestToOnDatabase()
         {
-            var option = new DbContextOptionsBuilder<FurnitureDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDb")
-                .Options;
-            using (var context = new FurnitureDBContext(option))
+            using (var context = new FurnitureDBContext(options))
             {
                 context.Furnitures.Add(new Furniture {Id=1, TypeFurniture = "Chair11", OutsideView = "Red", Material = "Pe", Price = 32.56 });
                 context.SaveChanges();
             }
-            using (var context=new FurnitureDBContext(option))
+            using (var context=new FurnitureDBContext(options))
             {
                 Assert.AreEqual(1,context.Furnitures.Count());
             }
-            using (var context= new FurnitureDBContext(option))
+            using (var context= new FurnitureDBContext(options))
             {
                 Furniture furniture = new Furniture { Id = 2, TypeFurniture = "Desk", OutsideView = "Color", Material = "Pe", Price = 32.56 };
                 addToList.AddFurnitureToList(context,furniture);
@@ -62,16 +68,14 @@ namespace DbTestingProject.Tests
 
         public void Delete_To_Item_MyList_Test()
         {
-            var option = new DbContextOptionsBuilder<FurnitureDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDb")
-                .Options;
-            using (var context = new FurnitureDBContext(option))
+            
+            using (var context = new FurnitureDBContext(options))
             {
                 context.Furnitures.Add(new Furniture { Id = 1, TypeFurniture = "Chair11", OutsideView = "Red", Material = "Pe", Price = 32.56 });
                 context.SaveChanges();
                 
             }
-            using (var context = new FurnitureDBContext(option))
+            using (var context = new FurnitureDBContext(options))
             {
 
                 deleteFurniture.WithDeleteFurniture(1, context);
