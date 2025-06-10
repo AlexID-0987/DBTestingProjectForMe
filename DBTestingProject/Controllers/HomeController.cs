@@ -68,6 +68,11 @@ namespace DBTestingProject.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> MyProducts()
+        {
+            List<Furniture> myCard = await Task.Run(() => FurnitureWithOperation.GetFurniture(DBContext).ToList());
+            return View(myCard);
+        }
         public IActionResult Privacy()
         {
             return View();

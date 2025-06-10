@@ -1,0 +1,16 @@
+﻿@model IEnumerable<DBTestingProject.Models.Furniture>
+<h1 style="text-align:center">My Product Cards</h1>
+
+<div class="d-flex flex-row mb-3 flex-lg-wrap">
+    @foreach (var card in Model)
+    {
+        <div class="card text-center mb-3 m-3 border border-primary" style="width: 18rem; background-color:antiquewhite;">
+            <div class="card-body">
+                <h5 class="card-title">@card.TypeFurniture</h5>
+                <p class="card-text">@card.Material</p>
+                <p class="card-text">@card.Price</p>
+                <a href="#" class="btn btn-primary">Go buy</a>
+            </div>
+        </div>
+    }
+</div>
