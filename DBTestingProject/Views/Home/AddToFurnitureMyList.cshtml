@@ -9,25 +9,26 @@
 <div class="row">
     <div class="container col-md-4">
         <form asp-action="AddToFurnitureMyList">
-            <div class="form-group mb-4">
-                <label asp-for="Id" class="form-control"></label>
-                <input asp-for="Id" class="form-control" readonly/>
-            </div>
+            
             <div class="form-group mb-4">
                 <label asp-for="TypeFurniture" class="form-control"></label>
                 <input asp-for="TypeFurniture" class="form-control"/>
+                <span asp-validation-for="TypeFurniture" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">
                 <label asp-for="OutsideView" class="form-control"></label>
                 <input asp-for="OutsideView" class="form-control" />
+                <span asp-validation-for="OutsideView" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">
                 <label asp-for="Material" class="form-control"></label>
                 <input asp-for="Material" class="form-control" />
+                <span asp-validation-for="Material" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">
                 <label asp-for="Price" class="form-control"></label>
                 <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">
                 <input type="submit" value="AddToFurnitureMyList" class="btn btn-primary form-control"/>
