@@ -15,9 +15,8 @@ namespace DBTestingProject.Models
         [Required(ErrorMessage = "This line is important!")]
         public string Material { get; set; } = String.Empty;
 
-        [Required]
-        
-        
+        [Required(ErrorMessage = "This line is important!")]
+        [Range(0.01, double.MaxValue, ErrorMessage ="Price must be a positive number!.")]
         public double Price { get; set; }
 
     }

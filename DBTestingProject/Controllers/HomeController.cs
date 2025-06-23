@@ -59,7 +59,11 @@ namespace DBTestingProject.Controllers
         {
             
            var furniture = await Task.Run(()=> FurnitureWithOperation.GetFurniture(DBContext).FirstOrDefault(furniture=>furniture.Id==id));
-            return View(furniture);
+            if (furniture != null)
+            {
+                return View(furniture);
+            }
+            return View("NotExists");
         }
         [HttpPost]
         public async Task<IActionResult> Edit(Furniture furnitureNew)
